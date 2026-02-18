@@ -36,7 +36,8 @@
 #define VOLUMEDOWN  0xEA
 
 // Debounce threshold (number of poll cycles the button must be held)
-#define DEBOUNCE_THRESHOLD 10
+// Main loop runs ~50us/iteration, so 50 cycles ≈ 2.5ms press + 2.5ms release
+#define DEBOUNCE_THRESHOLD 50
 
 // USB HID report descriptor (Consumer Control)
 PROGMEM const char usbHidReportDescriptor[USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH] = {
@@ -77,6 +78,8 @@ static void checkEncoder(void) {
   lastA = a;
 
   // Debounced mute button (switch on PB0)
+  // Counter increments while pressed, decrements while released.
+  // This debounces both press and release edges.
   if (!(PINB & ENC_SW)) {
     if (debounceCount < DEBOUNCE_THRESHOLD)
       debounceCount++;
@@ -85,8 +88,10 @@ static void checkEncoder(void) {
       isSwitchPressed = 1;
     }
   } else {
-    debounceCount = 0;
-    isSwitchPressed = 0;
+    if (debounceCount > 0)
+      debounceCount--;
+    if (debounceCount == 0)
+      isSwitchPressed = 0;
   }
 }
 
