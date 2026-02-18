@@ -6,7 +6,7 @@
 DEVICE     = attiny85
 F_CPU      = 16500000
 FUSE_L     = 0xE1
-FUSE_H     = 0xDD
+FUSE_H     = 0x5D  # RSTDISBL programmed: PB5 is GPIO (disables ISP permanently)
 
 # ISP Programmer: override on command line if needed
 #   e.g.: make flash PROGRAMMER="-c usbasp"
@@ -79,12 +79,18 @@ $(MNUC_BIN): $(MNUC_SRC)
 # --- Flash targets ---
 upload: hex micronucleus
 	@echo ">>> Plug in Digispark ATtiny85 now..."
+	@echo "    (To avoid sudo, install a udev rule for the Digispark VID/PID)"
 	sudo $(MNUC_BIN) --run main.hex
 
 flash: main.hex
 	$(AVRDUDE) -U flash:w:main.hex:i
 
 fuse:
+	@echo "WARNING: This disables RESET on PB5 (needed for encoder CLK)."
+	@echo "         ISP programming will no longer work after this."
+	@echo "         A high-voltage programmer is required to recover."
+	@echo "         Press Ctrl+C within 5s to abort..."
+	@sleep 5
 	$(AVRDUDE) -U hfuse:w:$(FUSE_H):m -U lfuse:w:$(FUSE_L):m
 
 program: flash fuse

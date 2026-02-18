@@ -16,7 +16,9 @@
 // Project Files: https://github.com/wagiminator/ATtiny85-TinyKnob
 // License: http://creativecommons.org/licenses/by-sa/3.0/
 
+#ifndef F_CPU
 #define F_CPU 16500000 // 16.5 MHz
+#endif
 
 #include <avr/io.h>
 #include <avr/wdt.h>

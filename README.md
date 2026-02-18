@@ -40,7 +40,7 @@ USB D+         PB4  3|    |6  PB1
 ### Prerequisites
 
 ```bash
-sudo apt install gcc-avr avr-libc binutils-avr libusb-1.0-0-dev
+sudo apt install gcc-avr avr-libc binutils-avr libusb-1.0-0-dev pkg-config
 ```
 
 ### Build everything
@@ -73,9 +73,14 @@ Rotate or press the knob to control your PC's volume.
 
 ```bash
 make flash               # flash firmware only
-make fuse                # program fuse bits
+make fuse                # program fuse bits (see warning below)
 make program             # flash firmware + fuse bits
 ```
+
+**Warning:** `make fuse` programs RSTDISBL, which disables the RESET pin on PB5
+(required for the encoder CLK line). After this, ISP programming no longer works —
+a high-voltage programmer is needed to recover. Digispark boards already ship with
+this fuse set, so `make fuse` is only needed for bare ATtiny85 chips.
 
 Override the programmer if needed:
 ```bash
@@ -107,5 +112,8 @@ Uses the [V-USB](https://www.obdev.at/products/vusb/) software USB stack.
 
 ## License
 
-Firmware source: [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
-V-USB library: GNU GPL v2 / v3 (see `usbdrv/License.txt`)
+See [LICENSE](LICENSE) for details.
+
+- Firmware source (`src/`): [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- V-USB library (`usbdrv/`): GNU GPL v2 / v3 (see `usbdrv/License.txt`)
+- Micronucleus uploader (`tools/micronucleus/`): GNU GPL v2
