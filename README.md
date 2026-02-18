@@ -116,4 +116,4 @@ See [LICENSE](LICENSE) for details.
 
 - Firmware source (`src/`): [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 - V-USB library (`usbdrv/`): GNU GPL v2 / v3 (see `usbdrv/License.txt`)
-- Micronucleus uploader (`tools/micronucleus/`): GNU GPL v2
+- Micronucleus uploader (`tools/micronucleus/`): MIT

@@ -28,7 +28,7 @@ License: CC BY-SA 3.0
 ```
 attiny85-hid-rotary-knob/
 ├── README.md                       # Comprehensive project docs (merged from old README.md + readme.txt)
-├── LICENSE                         # Already exists (MIT)
+├── LICENSE                         # Multi-license (CC BY-SA 3.0 / GPL / MIT)
 ├── .gitignore                      # Ignore *.o, *.elf, *.hex (build artifacts)
 ├── Makefile                        # Clean, well-documented build system
 ├── src/
@@ -102,7 +102,7 @@ attiny85-hid-rotary-knob/
 DEVICE     = attiny85
 F_CPU      = 16500000
 FUSE_L     = 0xE1
-FUSE_H     = 0xDD
+FUSE_H     = 0x5D  # RSTDISBL programmed: PB5 is GPIO
 
 # Programmer: override on command line if needed
 #   e.g.: make flash PROGRAMMER="-c usbasp"

@@ -12,5 +12,6 @@ V-USB library (usbdrv/):
   https://www.obdev.at/products/vusb/
 
 Micronucleus uploader (tools/micronucleus/):
-  GNU General Public License v2
+  MIT License
+  Copyright (c) 2012 ihsan Kehribar, 2014 T. Boscke
   https://github.com/micronucleus/micronucleus

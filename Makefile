@@ -14,6 +14,9 @@ SERIAL_PORT ?= /dev/ttyACM0
 PROGRAMMER  ?= -c stk500v1 -b 19200 -P $(SERIAL_PORT)
 AVRDUDE     = avrdude $(PROGRAMMER) -p $(DEVICE)
 
+# Use SUDO='' to skip sudo (e.g., if udev rules grant USB access)
+SUDO       ?= sudo
+
 # --- AVR Toolchain (firmware) ---
 CC      = avr-gcc
 OBJCOPY = avr-objcopy
@@ -58,7 +61,7 @@ main.elf: $(OBJECTS)
 
 main.hex: main.elf
 	$(OBJCOPY) -j .text -j .data -O ihex $< $@
-	$(SIZE) $@
+	$(SIZE) main.elf
 	@cp $@ hex/attiny85-volume-control-hid.hex
 
 src/%.o: src/%.c
@@ -79,8 +82,8 @@ $(MNUC_BIN): $(MNUC_SRC)
 # --- Flash targets ---
 upload: hex micronucleus
 	@echo ">>> Plug in Digispark ATtiny85 now..."
-	@echo "    (To avoid sudo, install a udev rule for the Digispark VID/PID)"
-	sudo $(MNUC_BIN) --run main.hex
+	@echo "    (To skip sudo: make upload SUDO='')"
+	$(SUDO) $(MNUC_BIN) --run main.hex
 
 flash: main.hex
 	$(AVRDUDE) -U flash:w:main.hex:i

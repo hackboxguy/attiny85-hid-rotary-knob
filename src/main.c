@@ -64,11 +64,14 @@ static uchar isSwitchPressed = 0;
 
 // Non-blocking encoder check with debounced button
 static void checkEncoder(void) {
-  static uint8_t lastA = 1;
+  static int8_t lastA = -1; // -1 = uninitialized, read from pin on first call
   static uint8_t debounceCount = 0;
 
   currentKey = 0;
   uint8_t a = (PINB & ENC_A) ? 1 : 0;
+
+  // Initialize from actual pin state on first call to avoid spurious edge
+  if (lastA < 0) { lastA = a; return; }
 
   // Detect falling edge on A (CLK) for rotation
   if (lastA && !a) {
