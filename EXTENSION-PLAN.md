@@ -20,7 +20,7 @@ USB D+         PB4  3|    |6  PB1    (onboard LED / FREE)
 - Available for extensions: **PB1** (currently unused)
 
 Flash budget: 8192 bytes total, **~2048** bytes used by micronucleus bootloader,
-**~2036** bytes used by current firmware = **~4100 bytes free**.
+**~2058** bytes used by current firmware = **~4086 bytes free**.
 
 ---
 
@@ -261,14 +261,14 @@ USB Device
 
 | Component                | Bytes (approx) |
 |--------------------------|----------------|
-| Current firmware         | 2036           |
+| Current firmware         | 2058           |
 | Custom config descriptor | 200            |
 | I2C bit-bang routines    | 300            |
 | I2C-Tiny-USB protocol    | 400            |
 | Request routing          | 100            |
 | **Total**                | **~3100**      |
 
-Fits within the ~6100 bytes available (8192 - 2048 bootloader).
+Fits within the ~6086 bytes available (8192 - 2048 bootloader - 2058 current).
 
 ### Use Case: Headless Linux PC with SSD1306 Display
 

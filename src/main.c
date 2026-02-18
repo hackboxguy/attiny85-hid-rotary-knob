@@ -28,9 +28,9 @@
 #include "usbdrv.h"
 
 // Rotary encoder pins
-#define ENC_SW  0b00000001 // PB0 ==> (SW)
-#define ENC_B   0b00000100 // PB2 ==> (DT)
-#define ENC_A   0b00100000 // PB5 ==> (CLK)
+#define ENC_SW  0x01 // PB0 ==> (SW)
+#define ENC_B   0x04 // PB2 ==> (DT)
+#define ENC_A   0x20 // PB5 ==> (CLK)
 
 // HID Consumer Control usage codes
 #define VOLUMEMUTE  0xE2
