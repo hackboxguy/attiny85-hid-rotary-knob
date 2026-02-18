@@ -1,0 +1,10 @@
+# Build artifacts
+*.o
+*.elf
+*.hex
+!hex/*.hex
+
+# Editor files
+*.swp
+*~
+.vscode/
