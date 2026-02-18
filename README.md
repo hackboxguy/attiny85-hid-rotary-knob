@@ -84,14 +84,21 @@ make flash PROGRAMMER="-c usbasp"
 
 ## Troubleshooting
 
-1. Run `dmesg` after plugging in the Digispark. If you see `device descriptor read/64, error -71`:
-2. Re-flash the micronucleus bootloader via ISP:
+**Windows shows "USB device not recognized" on plug-in, but device works after a few seconds:**
+This is normal. The micronucleus bootloader enumerates as a separate USB device for ~2 seconds
+on every plug-in (waiting for a firmware upload command). Some USB 3.x host controllers
+(especially on Windows 11) fail to recognize this brief bootloader device and show an error.
+Once the bootloader times out and hands off to the volume control firmware, the device
+re-enumerates and works correctly. The error message is harmless and can be dismissed.
+
+**Linux `dmesg` shows `device descriptor read/64, error -71`:**
+1. Re-flash the micronucleus bootloader via ISP:
    ```bash
    sudo avrdude -c usbasp -p t85 \
      -U flash:w:upgrade-t85_default.hex \
      -U lfuse:w:0xe1:m -U hfuse:w:0x5d:m -U efuse:w:0xfe:m
    ```
-3. Then retry the micronucleus flashing steps above.
+2. Then retry the micronucleus flashing steps above.
 
 ## Credits
 
