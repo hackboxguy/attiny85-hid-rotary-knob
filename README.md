@@ -35,47 +35,39 @@ USB D+         PB4  3|    |6  PB1
 | +              | 5V                 |
 | GND            | GND                |
 
-## Building from Source
+## Building
 
 ### Prerequisites
 
 ```bash
-sudo apt install gcc-avr avr-libc binutils-avr
+sudo apt install gcc-avr avr-libc binutils-avr libusb-1.0-0-dev
 ```
 
-### Compile
+### Build everything
 
 ```bash
-make hex
+make all
 ```
 
-This produces `main.hex` and copies it to `hex/attiny85-volume-control-hid.hex`.
+This builds:
+- `main.hex` - ATtiny85 firmware (also copied to `hex/attiny85-volume-control-hid.hex`)
+- `tools/micronucleus/micronucleus` - USB uploader tool for Digispark boards
+
+To build only the firmware: `make hex`
+To build only the uploader: `make micronucleus`
 
 ## Flashing
 
 ### Option A: Micronucleus (for boards with bootloader)
 
-1. Clone and build the micronucleus command-line tool:
-   ```bash
-   sudo apt install libusb-dev
-   git clone https://github.com/micronucleus/micronucleus.git
-   cd micronucleus/commandline
-   make
-   ```
+Build and flash in one step:
 
-2. (Optional) Update to the latest micronucleus bootloader v2.6:
-   ```bash
-   sudo ./micronucleus --run ../firmware/upgrades/upgrade-t85_default.hex
-   # Insert Digispark when prompted, then remove after flashing
-   ```
+```bash
+make upload
+# Plug in Digispark when prompted
+```
 
-3. Flash the volume control firmware:
-   ```bash
-   sudo ./micronucleus --run /path/to/hex/attiny85-volume-control-hid.hex
-   # Insert Digispark when prompted
-   ```
-
-4. Rotate or press the knob to control your PC's volume.
+Rotate or press the knob to control your PC's volume.
 
 ### Option B: ISP Programmer (avrdude + usbasp)
 

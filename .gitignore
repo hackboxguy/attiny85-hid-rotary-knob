@@ -3,6 +3,7 @@
 *.elf
 *.hex
 !hex/*.hex
+tools/micronucleus/micronucleus
 
 # Editor files
 *.swp
