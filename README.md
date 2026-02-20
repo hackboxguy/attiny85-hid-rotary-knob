@@ -1,16 +1,20 @@
 # ATtiny85 HID Rotary Knob
 
-Turn a Digispark ATtiny85 USB dongle into a USB volume control knob for PCs.
+Turn a Digispark ATtiny85 USB dongle into a USB volume control knob for under $5 in parts.
 
 Rotate the knob to adjust volume, press to mute. Works as a standard USB HID
-Consumer Control device - no drivers needed on any OS.
+Consumer Control device — no drivers needed. Compatible with Linux, Windows, and Android.
 
-![Volume Control Knob](doc/images/volume-control-knob.jpg)
+[![Video: Build a USB Volume Knob](doc/images/volume-control-knob.jpg)](https://youtu.be/dpbS4E6-ULQ)
+
+> **[Watch the build video on YouTube](https://youtu.be/dpbS4E6-ULQ)** | **[Detailed blog post](https://albert-david.blogspot.com/2026/02/build-low-cost-diy-usb-volume-knob-with.html)**
 
 ## Hardware Required
 
-- [Digispark ATtiny85 USB development board](http://digistump.com/products/1)
-- [KY-040 Rotary Encoder module](https://www.amazon.de/-/en/AZDelivery-KY-040-Encoder-Compatible-Arduino/dp/B07CMSHWV6)
+- [Digispark ATtiny85 USB development board](http://digistump.com/products/1) (~$2)
+- [KY-040 Rotary Encoder module](https://www.amazon.de/-/en/AZDelivery-KY-040-Encoder-Compatible-Arduino/dp/B07CMSHWV6) (~$1)
+- Female-to-female jumper wires (~$1)
+- Optional: knob cap for a cleaner finish
 
 ![Required Items](doc/images/required-items.jpg)
 
@@ -34,6 +38,10 @@ USB D+         PB4  3|    |6  PB1
 | SW             | P0                 |
 | +              | 5V                 |
 | GND            | GND                |
+
+## Assembly
+
+![Assembly Steps](doc/images/assembly-collage.jpg)
 
 ## Building
 
@@ -104,6 +112,14 @@ re-enumerates and works correctly. The error message is harmless and can be dism
      -U lfuse:w:0xe1:m -U hfuse:w:0x5d:m -U efuse:w:0xfe:m
    ```
 2. Then retry the micronucleus flashing steps above.
+
+## Compatibility
+
+| OS | Status | Notes |
+|----|--------|-------|
+| Linux | Works out of the box | Any desktop environment with HID media key support |
+| Windows | Works out of the box | Brief "USB device not recognized" during bootloader window is normal |
+| Android | Works via USB OTG | Requires OTG adapter; behaviour varies by device/ROM |
 
 ## Credits
 
