@@ -5,9 +5,9 @@ Turn a Digispark ATtiny85 USB dongle into a USB volume control knob for under $5
 Rotate the knob to adjust volume, press to mute. Works as a standard USB HID
 Consumer Control device — no drivers needed. Compatible with Linux, Windows, and Android.
 
-[![Video: Build a USB Volume Knob](doc/images/volume-control-knob.jpg)](https://youtu.be/dpbS4E6-ULQ)
+[![Video: Build a USB Volume Knob](http://img.youtube.com/vi/dpbS4E6-ULQ/0.jpg)](http://www.youtube.com/watch?v=dpbS4E6-ULQ)
 
-> **[Watch the build video on YouTube](https://youtu.be/dpbS4E6-ULQ)** | **[Detailed blog post](https://albert-david.blogspot.com/2026/02/build-low-cost-diy-usb-volume-knob-with.html)**
+> **[Detailed blog post with step-by-step instructions](https://albert-david.blogspot.com/2026/02/build-low-cost-diy-usb-volume-knob-with.html)**
 
 ## Hardware Required
 
